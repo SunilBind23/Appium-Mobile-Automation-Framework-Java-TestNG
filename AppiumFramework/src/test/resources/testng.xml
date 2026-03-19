@@ -1,0 +1,87 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<!--
+    testng.xml
+    ============================================================
+    Master TestNG suite configuration file.
+
+    USAGE:
+      - Run all tests:         mvn test
+      - Run specific suite:    mvn test -DsuiteXmlFile=src/test/resources/testng.xml
+      - Run with device param: mvn test -DdeviceName=Pixel7 -Dudid=ABCDEF123
+
+    PARALLEL EXECUTION:
+      - parallel="methods" → each @Test method runs in its own thread
+      - thread-count="2"   → 2 threads = 2 simultaneous devices
+      - Each <test> block targets a different device via <parameter> tags
+
+    LISTENERS:
+      - RetryListener: auto-attaches RetryAnalyzer to all test methods
+============================================================
+-->
+
+<suite name="Appium Mobile Test Suite"
+       verbose="2"
+       parallel="tests"
+       thread-count="2">
+
+    <!-- ======================================================
+         LISTENERS
+         RetryListener auto-applies retry logic to all @Test methods
+    ====================================================== -->
+    <listeners>
+        <listener class-name="com.framework.utils.RetryListener"/>
+    </listeners>
+
+    <!-- ======================================================
+         DEVICE 1 - Emulator (default)
+         Runs on AVD emulator-5554
+    ====================================================== -->
+    <test name="Android Tests - Emulator" >
+        <parameter name="deviceName"      value="emulator-5554"/>
+        <parameter name="platformVersion" value="13.0"/>
+        <parameter name="udid"            value="emulator-5554"/>
+
+        <classes>
+            <class name="com.framework.tests.LoginTest">
+                <methods>
+                    <include name="testValidLogin"/>
+                    <include name="testInvalidLogin"/>
+                    <include name="testLockedOutUserLogin"/>
+                    <include name="testLoginWithEmptyUsername"/>
+                    <include name="testLoginWithEmptyPassword"/>
+                </methods>
+            </class>
+
+            <class name="com.framework.tests.AddToCartTest">
+                <methods>
+                    <include name="testAddSingleProductToCart"/>
+                    <include name="testAddMultipleProductsToCart"/>
+                    <include name="testProductAppearsInCart"/>
+                    <include name="testRemoveProductFromCart"/>
+                    <include name="testCompleteCheckoutFlow"/>
+                    <include name="testCartPersistsAfterAppBackground"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- ======================================================
+         DEVICE 2 - Real Device
+         Uncomment and set correct UDID for real device parallel run.
+         The second <test> block runs simultaneously with the first.
+    ====================================================== -->
+    <!--
+    <test name="Android Tests - Real Device">
+        <parameter name="deviceName"      value="Pixel 7 Pro"/>
+        <parameter name="platformVersion" value="13.0"/>
+        <parameter name="udid"            value="R3CN20XXXXXX"/>
+
+        <classes>
+            <class name="com.framework.tests.LoginTest"/>
+            <class name="com.framework.tests.AddToCartTest"/>
+        </classes>
+    </test>
+    -->
+
+</suite>

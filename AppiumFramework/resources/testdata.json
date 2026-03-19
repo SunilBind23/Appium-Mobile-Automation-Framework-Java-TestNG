@@ -1,0 +1,34 @@
+{
+  "loginData": {
+    "validUser": {
+      "username": "standard_user",
+      "password": "secret_sauce",
+      "expectedHomeTitle": "Products"
+    },
+    "invalidUser": {
+      "username": "invalid_user",
+      "password": "wrong_password",
+      "expectedError": "Username and password do not match any user in this service."
+    },
+    "lockedUser": {
+      "username": "locked_out_user",
+      "password": "secret_sauce",
+      "expectedError": "Sorry, this user has been locked out."
+    }
+  },
+  "cartData": {
+    "product1": {
+      "name": "Sauce Labs Backpack",
+      "price": "$29.99"
+    },
+    "product2": {
+      "name": "Sauce Labs Bike Light",
+      "price": "$9.99"
+    }
+  },
+  "checkoutData": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "postalCode": "10001"
+  }
+}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    log4j2.xml - Logging Configuration
+    Logs are written to both console and a rolling file.
+    Place this file in src/main/resources or resources folder.
+-->
+<Configuration status="WARN">
+
+    <Appenders>
+
+        <!-- Console Appender: logs to terminal -->
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout
+                pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <!-- File Appender: rolling log file -->
+        <RollingFile name="FileAppender"
+                     fileName="reports/logs/automation.log"
+                     filePattern="reports/logs/automation-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout
+                pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <!-- Roll over daily -->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!-- Roll over at 10MB -->
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <!-- Framework logger: DEBUG level for detailed output -->
+        <Logger name="com.framework" level="DEBUG" additivity="false">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+
+        <!-- Root logger: INFO for everything else -->
+        <Root level="INFO">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
