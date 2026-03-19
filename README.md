@@ -4,7 +4,7 @@ A production-ready mobile test automation framework built with **Appium 2.x + Ja
 
 ---
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 AppiumMobileFramework/
@@ -62,7 +62,7 @@ AppiumMobileFramework/
 
 ---
 
-## ⚙️ Prerequisites
+##  Prerequisites
 
 | Tool              | Version  | Notes                              |
 |-------------------|----------|------------------------------------|
@@ -76,7 +76,7 @@ AppiumMobileFramework/
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### 1. Install Appium
 ```bash
@@ -129,7 +129,7 @@ mvn clean test -DsuiteXmlFile=src/test/resources/testng.xml
 
 ---
 
-## 🔄 Parallel Execution
+##  Parallel Execution
 
 Edit `src/test/resources/testng.xml` and uncomment the second `<test>` block:
 
@@ -148,7 +148,7 @@ Edit `src/test/resources/testng.xml` and uncomment the second `<test>` block:
 
 ---
 
-## 📊 Reports
+##  Reports
 
 After test run, open the report:
 ```
@@ -167,7 +167,7 @@ reports/logs/automation.log
 
 ---
 
-## 🔁 Retry Logic
+##  Retry Logic
 
 Failed tests are automatically retried **up to 2 times**.
 - Configure `MAX_RETRY_COUNT` in `RetryAnalyzer.java`
@@ -175,7 +175,7 @@ Failed tests are automatically retried **up to 2 times**.
 
 ---
 
-## 🏗️ Adding a New Page
+##  Adding a New Page
 
 1. Create `src/main/java/com/framework/pages/MyNewPage.java`
 2. Extend `BasePage`
@@ -200,7 +200,7 @@ public class MyNewPage extends BasePage {
 
 ---
 
-## 🏗️ Adding a New Test
+##  Adding a New Test
 
 1. Create `src/test/java/com/framework/tests/MyTest.java`
 2. Extend `BaseTest`
@@ -218,7 +218,7 @@ public class MyTest extends BaseTest {
 
 ---
 
-## 🔧 CI/CD (GitHub Actions)
+##  CI/CD (GitHub Actions)
 
 The pipeline in `.github/workflows/mobile-tests.yml`:
 - Starts a Pixel 4 emulator (API 33)
@@ -230,7 +230,7 @@ Trigger manually from **Actions → Run Workflow** in GitHub.
 
 ---
 
-## 📦 Tech Stack
+##  Tech Stack
 
 | Component     | Technology                 |
 |---------------|----------------------------|
